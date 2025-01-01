@@ -1,10 +1,15 @@
 const canvas = document.querySelector('canvas')
 
 const pen = canvas.getContext('2d');
-
+// Add after canvas setup
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initCircles(); // Reinitialize circles with new dimensions
+});
 let maxRadius=40;
 
 
@@ -98,6 +103,31 @@ function Circle(x, y, dx, dy, radius) {
 
 
 let circleArray = [];
+const circleSlider = document.getElementById('circleCount');
+const circleValue = document.getElementById('circleValue');
+
+function initCircles() {
+    circleArray = []; // Clear existing circles
+    const count = parseInt(circleSlider.value);
+    circleValue.textContent = count;
+
+    for (let i = 0; i < count; i++) {
+        let radius = Math.random() * 20 + 1;
+        let x = Math.random() * (innerWidth - radius * 2) + radius;
+        let y = Math.random() * (innerHeight - radius * 2) + radius;
+        let dx = (Math.random() - 0.5) * 5;
+        let dy = (Math.random() - 0.5) * 5;
+
+        circleArray.push(new Circle(x, y, dx, dy, radius));
+    }
+}
+
+// Add event listener for slider
+circleSlider.addEventListener('input', initCircles);
+
+// Initial creation of circles
+initCircles();
+
 
 for (let i = 0; i <= 500; i++) {
     let radius = Math.random()*20+1;
@@ -131,3 +161,4 @@ function animate() {
 }
 
 animate();
+initBalls();

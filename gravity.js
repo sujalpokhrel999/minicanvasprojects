@@ -2,7 +2,12 @@ const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const ball = canvas.getContext('2d');
-
+// Add after canvas setup
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initBalls(); // Reinitialize balls with new dimensions
+});
 // Create the Ball constructor
 function Balls(x, y, radius,dy, gravity, bounce, lineStartY) {
     this.x = x; // x-coordinate of the ball
@@ -41,7 +46,33 @@ function Balls(x, y, radius,dy, gravity, bounce, lineStartY) {
 }
 
 let circleArray = [];
+const ballSlider = document.getElementById('ballCount');
+const ballValue = document.getElementById('ballValue');
 
+
+function initBalls() {
+    circleArray = []; // Clear existing balls
+    const count = parseInt(ballSlider.value);
+    ballValue.textContent = count;
+
+    for (let i = 0; i < count; i++) {
+        let radius = Math.random() * 5 + 1;
+        let x = Math.random() * (innerWidth - radius * 2) + radius;
+        let y = Math.random() * (innerHeight / 2);
+        let dy = Math.random() * 2 - 1;
+        let gravity = 0.5;
+        let bounce = 0.7;
+        let lineStartY = canvas.height - 100;
+
+        circleArray.push(new Balls(x, y, radius, dy, gravity, bounce, lineStartY));
+    }
+}
+
+// Add event listener for slider
+ballSlider.addEventListener('input', initBalls);
+
+// Initial creation of balls
+initBalls();
 // Create multiple balls with random properties
 for (let i = 0; i <= 100; i++) {
     let radius = Math.random() * 5 + 1; // Radius between 10 and 30
@@ -73,5 +104,5 @@ function animate() {
         circleArray[i].update();
     }
 }
-
+initBalls();
 animate();

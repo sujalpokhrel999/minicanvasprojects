@@ -2,18 +2,11 @@ const canvas = document.querySelector('canvas')
 
 const pen = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
 let maxRadius=40;
 
-
-
-window.addEventListener('resize',()=>{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-})
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 var mouse ={
     x:undefined,
@@ -98,25 +91,40 @@ function Circle(x, y,  radius) {
         this.draw();
     }
 }
-
-
-
-let circleArray = [];
-
-const startX =50;
-const startY =50;
-const spacing =50;
+circleArray = [];
+const startX = 50;
+const startY = 50;
+const spacing = 50;
 
 for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 19; j++) {
-            let radius = 1;
-            let x = startX + j * (spacing + 2 * 10); // Adjust for circle width
-            let y = startY + i * (spacing + 2 * 10); // Adjust for circle height
-            circleArray.push(new Circle(x, y, radius));
-        }
+    for (let j = 0; j < 19; j++) {
+        let radius = 1;
+        let x = startX + j * (spacing + 2 * 10);
+        let y = startY + i * (spacing + 2 * 10);
+        circleArray.push(new Circle(x, y, radius));
+    }
 }
 
+// Add after canvas setup
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // Reinitialize the grid
+    circleArray = [];
+    const startX = 50;
+    const startY = 50;
+    const spacing = 50;
 
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 19; j++) {
+            let radius = 1;
+            let x = startX + j * (spacing + 2 * 10);
+            let y = startY + i * (spacing + 2 * 10);
+            circleArray.push(new Circle(x, y, radius));
+        }
+    }
+});
 
 function animate() {
     requestAnimationFrame(animate);

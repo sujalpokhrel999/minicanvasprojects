@@ -1,6 +1,15 @@
 const canvas = document.querySelector('canvas');
-canvas.height = window.innerHeight;
+// Add after canvas setup
 canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles(); // Reinitialize particles with new dimensions
+});
 const ball = canvas.getContext('2d');
 
 let mouse = { x: 100, y: 100 };
@@ -102,6 +111,7 @@ function Particle(x, y, radius, fill) {
 let ballArray = [];
 const radius = 20;
 
+
 for (let i = 0; i < 200; i++) {
     let x = Math.random() * (innerWidth - radius * 2) + radius;
     let y = Math.random() * (innerHeight - radius * 2) + radius;
@@ -135,3 +145,5 @@ function animation() {
 }
 
 animation();
+
+initParticles();
