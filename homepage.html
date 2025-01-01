@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Projects Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-info {
+            padding: 1rem;
+        }
+
+        .project-title {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+        }
+
+        .project-description {
+            color: #666;
+            margin: 0.5rem 0 0;
+            font-size: 0.9rem;
+        }
+
+        #gravity-preview {
+            background: #FFB6C1;
+        }
+
+        #spider-preview {
+            background: #000000;
+        }
+
+        #circles-preview {
+            background: #87CEEB;
+        }
+
+        #collision-preview {
+            background: #98FB98;
+        }
+
+        .preview-text {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        #spider-preview .preview-text {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Canvas Projects Gallery</h1>
+    </header>
+
+    <main class="projects-grid">
+        <!-- Gravity Project -->
+        <a href="gravity.html" class="project-card">
+            <div class="preview-image" id="gravity-preview">
+                <div class="preview-text">Gravity</div>
+            </div>
+            <div class="project-info">
+                <h2 class="project-title">Gravity Simulation</h2>
+                <p class="project-description">Multiple balls bouncing with gravity and collision physics</p>
+            </div>
+        </a>
+
+        <!-- Spider Web Project -->
+        <a href="spider.html" class="project-card">
+            <div class="preview-image" id="spider-preview">
+                <div class="preview-text">Spider Web</div>
+            </div>
+            <div class="project-info">
+                <h2 class="project-title">Spider Web Effect</h2>
+                <p class="project-description">Interactive web-like effect following mouse movement</p>
+            </div>
+        </a>
+
+        <!-- Interactive Circles -->
+        <a href="canvas.html" class="project-card">
+            <div class="preview-image" id="circles-preview">
+                <div class="preview-text">Circles</div>
+            </div>
+            <div class="project-info">
+                <h2 class="project-title">Interactive Circles</h2>
+                <p class="project-description">Colorful circles that interact with mouse movement</p>
+            </div>
+        </a>
+
+        <!-- Collision System -->
+        <a href="collid.html" class="project-card">
+            <div class="preview-image" id="collision-preview">
+                <div class="preview-text">Collision</div>
+            </div>
+            <div class="project-info">
+                <h2 class="project-title">Collision System</h2>
+                <p class="project-description">Physics-based particle collision simulation</p>
+            </div>
+        </a>
+    </main>
+</body>
+</html>
